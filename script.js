@@ -1,24 +1,19 @@
-let slides = document.querySelectorAll('.carousel-slide');
-let buttons = document.querySelectorAll('.carousel-button');
+//Carrossel
 
-function goToSlide(index) {
-  slides.forEach(function(slide) {
-    slide.classList.remove('active');
-  });
+let slides = document.querySelectorAll('.slide-container');
+let index = 0;
 
-  buttons.forEach(function(button) {
-    button.style.display = 'none';
-  });
-
-  slides[index].classList.add('active');
-  buttons[index].style.display = 'block';
+function next(){
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
 }
 
-goToSlide(0); // Exibe o primeiro slide inicialmente
+function prev(){
+    slides[index].classList.remove('active');
+    index = (index - 1 + slides.length) % slides.length;
+    slides[index].classList.add('active');
+}
 
-buttons.forEach(function(button, index) {
-  button.addEventListener('click', function() {
-    goToSlide(index);
-  });
-});
+setInterval(next, 7000);
 
